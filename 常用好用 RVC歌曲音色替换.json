@@ -1,0 +1,606 @@
+{
+  "id": "7e971f7e-c0db-4f38-9000-6cc35c66b21d",
+  "revision": 0,
+  "last_node_id": 33,
+  "last_link_id": 24,
+  "nodes": [
+    {
+      "id": 7,
+      "type": "RunningHubRVCVoiceConversion",
+      "pos": [
+        952.701171875,
+        565.41455078125
+      ],
+      "size": [
+        323.7701110839844,
+        270
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "rvc_model",
+          "name": "rvc_model",
+          "type": "RVC_MODEL",
+          "link": 14
+        },
+        {
+          "label": "audio",
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 6
+        },
+        {
+          "label": "speaker_id",
+          "name": "speaker_id",
+          "type": "INT",
+          "widget": {
+            "name": "speaker_id"
+          }
+        },
+        {
+          "label": "f0_up_key",
+          "name": "f0_up_key",
+          "type": "INT",
+          "widget": {
+            "name": "f0_up_key"
+          }
+        },
+        {
+          "label": "f0_method",
+          "name": "f0_method",
+          "type": "COMBO",
+          "widget": {
+            "name": "f0_method"
+          }
+        },
+        {
+          "label": "index_path",
+          "name": "index_path",
+          "type": "STRING",
+          "widget": {
+            "name": "index_path"
+          }
+        },
+        {
+          "label": "index_rate",
+          "name": "index_rate",
+          "type": "FLOAT",
+          "widget": {
+            "name": "index_rate"
+          }
+        },
+        {
+          "label": "filter_radius",
+          "name": "filter_radius",
+          "type": "INT",
+          "widget": {
+            "name": "filter_radius"
+          }
+        },
+        {
+          "label": "resample_sr",
+          "name": "resample_sr",
+          "type": "INT",
+          "widget": {
+            "name": "resample_sr"
+          }
+        },
+        {
+          "label": "rms_mix_rate",
+          "name": "rms_mix_rate",
+          "type": "FLOAT",
+          "widget": {
+            "name": "rms_mix_rate"
+          }
+        },
+        {
+          "label": "protect",
+          "name": "protect",
+          "type": "FLOAT",
+          "widget": {
+            "name": "protect"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "audio",
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            9
+          ]
+        },
+        {
+          "label": "info",
+          "name": "info",
+          "type": "STRING"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHubRVCVoiceConversion",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        0,
+        0,
+        "harvest",
+        "",
+        0.6600000000000001,
+        3,
+        0,
+        1,
+        0.33000000000000007
+      ]
+    },
+    {
+      "id": 10,
+      "type": "AudioSeparation",
+      "pos": [
+        557.641357421875,
+        694.9412231445312
+      ],
+      "size": [
+        306.762939453125,
+        180.9543914794922
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "audio",
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 19
+        },
+        {
+          "label": "chunk_fade_shape",
+          "name": "chunk_fade_shape",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "chunk_fade_shape"
+          }
+        },
+        {
+          "label": "chunk_length",
+          "name": "chunk_length",
+          "shape": 7,
+          "type": "FLOAT",
+          "widget": {
+            "name": "chunk_length"
+          }
+        },
+        {
+          "label": "chunk_overlap",
+          "name": "chunk_overlap",
+          "shape": 7,
+          "type": "FLOAT",
+          "widget": {
+            "name": "chunk_overlap"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "Bass",
+          "name": "Bass",
+          "type": "AUDIO",
+          "links": [
+            10
+          ]
+        },
+        {
+          "label": "Drums",
+          "name": "Drums",
+          "type": "AUDIO",
+          "links": [
+            11
+          ]
+        },
+        {
+          "label": "Other",
+          "name": "Other",
+          "type": "AUDIO",
+          "links": [
+            12
+          ]
+        },
+        {
+          "label": "Vocals",
+          "name": "Vocals",
+          "type": "AUDIO",
+          "links": [
+            6
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AudioSeparation",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "linear",
+        10,
+        0.1
+      ]
+    },
+    {
+      "id": 12,
+      "type": "AFL:AudioMixStems",
+      "pos": [
+        1335.494873046875,
+        693.3257446289062
+      ],
+      "size": [
+        270,
+        190
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "stem_a",
+          "name": "stem_a",
+          "type": "AUDIO",
+          "link": 9
+        },
+        {
+          "label": "stem_b",
+          "name": "stem_b",
+          "type": "AUDIO",
+          "link": 10
+        },
+        {
+          "label": "stem_c",
+          "name": "stem_c",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 11
+        },
+        {
+          "label": "stem_d",
+          "name": "stem_d",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": 12
+        },
+        {
+          "label": "gain_a",
+          "name": "gain_a",
+          "shape": 7,
+          "type": "FLOAT",
+          "widget": {
+            "name": "gain_a"
+          }
+        },
+        {
+          "label": "gain_b",
+          "name": "gain_b",
+          "shape": 7,
+          "type": "FLOAT",
+          "widget": {
+            "name": "gain_b"
+          }
+        },
+        {
+          "label": "gain_c",
+          "name": "gain_c",
+          "shape": 7,
+          "type": "FLOAT",
+          "widget": {
+            "name": "gain_c"
+          }
+        },
+        {
+          "label": "gain_d",
+          "name": "gain_d",
+          "shape": 7,
+          "type": "FLOAT",
+          "widget": {
+            "name": "gain_d"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "audio",
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            22
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AFL:AudioMixStems",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        1.0000000000000002,
+        1.0000000000000002,
+        1.0000000000000002,
+        1.0000000000000002
+      ]
+    },
+    {
+      "id": 26,
+      "type": "VHS_LoadAudioUpload",
+      "pos": [
+        9.163334846496582,
+        815.8519897460938
+      ],
+      "size": [
+        326.86248779296875,
+        165.0790252685547
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "audio",
+          "name": "audio",
+          "type": "STRING",
+          "widget": {
+            "name": "audio"
+          }
+        },
+        {
+          "label": "start_time",
+          "name": "start_time",
+          "type": "FLOAT",
+          "widget": {
+            "name": "start_time"
+          }
+        },
+        {
+          "label": "duration",
+          "name": "duration",
+          "type": "FLOAT",
+          "widget": {
+            "name": "duration"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "audio",
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            19
+          ]
+        },
+        {
+          "label": "audio_length_seconds",
+          "name": "audio_length_seconds",
+          "type": "FLOAT"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VHS_LoadAudioUpload",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": {
+        "audio": "fafc6c053ccf1f6e3290e8f71cc42754e9c3892cbfa757a3959027e8b253a31b.mp3",
+        "start_time": 0,
+        "duration": 700.0000000000001,
+        "choose audio to upload": "image"
+      }
+    },
+    {
+      "id": 17,
+      "type": "RunningHubRVCZipModelLoader",
+      "pos": [
+        17.437969207763672,
+        553.8593139648438
+      ],
+      "size": [
+        326.1011657714844,
+        150
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "zip_file",
+          "name": "zip_file",
+          "type": "COMBO",
+          "widget": {
+            "name": "zip_file"
+          }
+        },
+        {
+          "label": "device",
+          "name": "device",
+          "type": "COMBO",
+          "widget": {
+            "name": "device"
+          }
+        },
+        {
+          "label": "is_half",
+          "name": "is_half",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "is_half"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "label": "rvc_model",
+          "name": "rvc_model",
+          "type": "RVC_MODEL",
+          "links": [
+            14
+          ]
+        },
+        {
+          "label": "info",
+          "name": "info",
+          "type": "STRING"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RunningHubRVCZipModelLoader",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "176f33c4f47db082a170b0932cc3d3c6f9ac3cda9613b151f00b6f82bee8c2e0.zip",
+        "auto",
+        true,
+        null
+      ]
+    },
+    {
+      "id": 31,
+      "type": "PreviewAudio",
+      "pos": [
+        1660.6142578125,
+        683.3965454101562
+      ],
+      "size": [
+        270,
+        88
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "audio",
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "label": "audio",
+          "name": "audio",
+          "type": "AUDIO",
+          "links": []
+        }
+      ],
+      "properties": {
+        "widget_ue_connectable": {},
+        "Node name for S&R": "PreviewAudio"
+      },
+      "widgets_values": []
+    }
+  ],
+  "links": [
+    [
+      6,
+      10,
+      3,
+      7,
+      1,
+      "AUDIO"
+    ],
+    [
+      9,
+      7,
+      0,
+      12,
+      0,
+      "AUDIO"
+    ],
+    [
+      10,
+      10,
+      0,
+      12,
+      1,
+      "AUDIO"
+    ],
+    [
+      11,
+      10,
+      1,
+      12,
+      2,
+      "AUDIO"
+    ],
+    [
+      12,
+      10,
+      2,
+      12,
+      3,
+      "AUDIO"
+    ],
+    [
+      14,
+      17,
+      0,
+      7,
+      0,
+      "RVC_MODEL"
+    ],
+    [
+      19,
+      26,
+      0,
+      10,
+      0,
+      "AUDIO"
+    ],
+    [
+      22,
+      12,
+      0,
+      31,
+      0,
+      "AUDIO"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 2,
+      "title": "RVC歌曲音色替换",
+      "bounding": [
+        -55.741241455078125,
+        436.8492736816406,
+        1992.933837890625,
+        741.31201171875
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "links_added_by_ue": [],
+    "ue_links": [],
+    "0246.VERSION": [
+      0,
+      0,
+      4
+    ],
+    "pixaromaGroups": [],
+    "ds": {
+      "scale": 0.7972024500000009,
+      "offset": [
+        -1112.013089140093,
+        -362.98594736022
+      ]
+    },
+    "frontendVersion": "1.23.0",
+    "KKvideo_latentpreview": false,
+    "KKvideo_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true,
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0
+  },
+  "version": 0.4
+}
